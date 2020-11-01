@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe App</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="search-bar">
+        <i class="fa fa-exclamation-circle fa-lg"></i>
+        <input
+          type="text"
+          id="ingredient-input"
+          placeholder="Enter ingredient"
+        />
+        <button>Search</button>
+        <div id="showing-results-header"></div>
+      </div>
+      <div id="recipes-container"></div>
+    </div>
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      {{#each data}}
+        <div class="recipe">
+          <h2>
+            {{title}}
+          </h2>
+          <div class="meal-img-container">
+            <img src={{img}} />
+          </div>
+          <button
+            class="video-link-btn"
+            onclick=" window.open('{{videoLink}}','_blank')"
+          >
+            Tutorial Video
+          </button>
+          <div class="ingredients-list">
+            <h4>
+              Ingredients:
+            </h4>
+            <ul>
+              {{#each this.ingredients}}
+                <li class="ingredient">
+                  {{this}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
+    <script id="empty-state-template" type="text/x-handlebars-template">
+      <div class="empty-state">
+        <i class="far fa-grin-beam-sweat fa-4x"></i>
+        <br />
+        <h1>
+          {{data.title}}
+          <span>
+            "{{data.ingredient}}"
+          </span>
+        </h1>
+        <br />
+        <h3>
+          {{data.subTitle}}
+        </h3>
+      </div>
+    </script>
+    <script src="/scripts/handlebars/dist/handlebars.js"></script>
+    <script src="/scripts/jquery/dist/jquery.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
